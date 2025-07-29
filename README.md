@@ -1,6 +1,6 @@
 # CTI JSON to Markdown Converter
 
-A powerful Python tool for converting Cyber Threat Intelligence (CTI) JSON files to well-formatted Markdown documents. Supports multiple CTI formats including MITRE ATT&CK, STIX, OpenCTI, and custom threat intelligence data.
+A powerful Python tool for converting Cyber Threat Intelligence (CTI) JSON files to well-formatted Markdown documents optimized for LLM knowledge corpuses. Supports multiple CTI formats including MITRE ATT&CK, STIX, OpenCTI, and custom threat intelligence data.
 
 ## Features
 
