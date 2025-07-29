@@ -6,14 +6,15 @@ This script processes JSON files from various CTI sources and converts them
 to markdown format. It supports MITRE ATT&CK, STIX, OpenCTI, and custom formats.
 """
 
-import os
-import json
 import argparse
+import json
+import os
+import re
 import time
 from pathlib import Path
-from typing import Dict, Any, List, Union, Optional
+from typing import Any, Dict, List, Optional, Union
+
 from tqdm import tqdm
-import re
 
 
 def clean_text(input_text: Union[str, Any]) -> str:

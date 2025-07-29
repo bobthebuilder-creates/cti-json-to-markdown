@@ -6,14 +6,15 @@ This script recursively processes a directory of JSON files from MITRE ATT&CK
 and converts them to markdown format while preserving directory structure.
 """
 
-import os
-import json
 import argparse
+import json
+import os
+import re
 import time
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any, Dict, List, Optional, Union
+
 from tqdm import tqdm
-import re
 
 
 def clean_text(input_text: str) -> str:
