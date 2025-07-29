@@ -29,16 +29,9 @@ This suite provides multiple specialized converters to transform various CTI for
 - **Relationship preservation**: Maintains technique-to-tactic-to-mitigation mappings
 - **ICS/Enterprise support**: Handles both Industrial Control Systems and Enterprise frameworks
 
-### `test_script.py` - Validation Framework
-**Quality assurance and testing**
-- **Representative sampling**: Tests conversion on diverse file samples
-- **Performance estimation**: Predicts processing time for full datasets
-- **Token analysis**: Evaluates chunking effectiveness before full conversion
-- **Quality validation**: Verifies output format and content accuracy
-
 ## RAG Optimization Features
 
-### Intelligent Chunking Strategy
+### Intelligent Chunking Strategy (convert_mitre.py only)
 - **Optimal token sizing**: 800-token chunks ideal for embedding models
 - **Semantic boundaries**: Preserves paragraph and section structure
 - **Cybersecurity-aware overlap**: 22% overlap maintains attack chain relationships
@@ -67,13 +60,13 @@ python convert_cti_generic.py /path/to/cti/data
 python convert_cti_generic.py /path/to/cti/data ./rag_corpus
 ```
 
-### MITRE ATT&CK Conversion
+### MITRE ATT&CK Conversion with Chunking
 ```bash
-# Test first (recommended)
-python test_script.py /path/to/mitre/ics-attack/ --sample-size 20
-
-# Convert full dataset with chunking
+# Convert full dataset with chunking optimization
 python convert_mitre.py /path/to/mitre/ics-attack/
+
+# With custom output directory
+python convert_mitre.py /path/to/mitre/ics-attack/ ./mitre_corpus
 ```
 
 ### Complete Data Preservation
@@ -85,7 +78,7 @@ python convert_cti_comprehensive.py /path/to/threat/data
 ### Threat Actor Intelligence
 ```bash
 # Convert VulnCheck or similar threat actor feeds
-python convert_cti_generic.py /path/to/threat/actors ./actor_corpus
+python convert_cti_generic.py /path/to/threat/actors
 ```
 
 ## Output Structure
@@ -96,7 +89,7 @@ The converters create organized, RAG-optimized directory structures:
 output_directory/
 ├── attack-pattern/          # MITRE techniques (T####)
 │   ├── T0817-Drive-by-Compromise.md
-│   └── T0818-Engineering-Workstation_chunk_1.md
+│   └── T0818-Engineering-Workstation_chunk_1.md  # Only with convert_mitre.py
 ├── course-of-action/        # MITRE mitigations (M####)
 ├── intrusion-set/          # Threat groups (G####)
 ├── malware/                # Software/tools (S####)
@@ -121,7 +114,7 @@ output_directory/
 1. **Convert CTI data** using appropriate converter
 2. **Upload markdown files** to RAG system (Open WebUI, LangChain, etc.)
 3. **Configure embedding model** (recommend cybersecurity-specific models)
-4. **Set chunking parameters** to match converter output (800 tokens, 22% overlap)
+4. **Set chunking parameters** to match converter output (800 tokens for convert_mitre.py)
 5. **Enable retrieval** for threat hunting and analysis workflows
 
 ## Performance Metrics
@@ -136,7 +129,7 @@ output_directory/
 - **Enterprise ATT&CK**: ~5,000 files → ~30-60 seconds
 - **Mixed CTI feeds**: Variable based on complexity
 
-### Chunking Statistics
+### Chunking Statistics (convert_mitre.py)
 - **Average chunks per large file**: 2-3 chunks
 - **Files requiring chunking**: ~10-20% of typical datasets
 - **Token distribution**: 200-800 tokens per chunk (optimal for RAG)
@@ -158,12 +151,6 @@ pip install tqdm
 
 ## Advanced Features
 
-### Testing and Validation
-- **Smart sampling**: Representative file selection across directories
-- **Performance prediction**: Estimates full dataset processing time
-- **Quality assurance**: Validates output format and content accuracy
-- **Token analysis**: Predicts chunking requirements and distribution
-
 ### Error Handling
 - **Graceful degradation**: Continues processing on individual file errors
 - **Detailed logging**: Progress bars with error counts and file tracking
@@ -171,10 +158,10 @@ pip install tqdm
 - **Validation checks**: Ensures output quality and completeness
 
 ### Customization Options
-- **Configurable chunking**: Adjustable token limits and overlap ratios
+- **Configurable output**: Default directories or custom paths
 - **Output formatting**: Customizable markdown templates
-- **Filtering options**: Process specific object types or directories
 - **Metadata preservation**: Maintains original source attribution
+- **Progress tracking**: Real-time processing updates with tqdm
 
 ## Use Cases
 
@@ -195,6 +182,14 @@ pip install tqdm
 - **Risk assessment**: Correlate threats with organizational vulnerabilities
 - **Executive briefings**: Generate executive-level threat summaries
 - **Audit preparation**: Maintain comprehensive threat intelligence records
+
+## Files in Repository
+
+- **`convert_cti_generic.py`** - Universal CTI converter with multi-format support
+- **`convert_cti_comprehensive.py`** - Complete data preservation converter
+- **`convert_mitre.py`** - MITRE ATT&CK specialist with advanced chunking
+- **`requirements.txt`** - Python dependencies (tqdm)
+- **`.gitignore`** - Git ignore rules for output directories and temp files
 
 ## Contributing
 
