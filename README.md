@@ -32,14 +32,6 @@ A comprehensive Python tool for converting Cyber Threat Intelligence (CTI) JSON 
 - **⚡ Optimized Performance**: Shared functions, eliminated redundancies, PEP8 compliant
 - **🔧 Production Ready**: Handles security bulletins, threat actors, CTI objects universally
 
-### `convert_cti_comprehensive_v2.py` (Stable) 🌟
-**The main comprehensive converter that ensures ALL data is captured:**
-- Complete data extraction from any JSON structure
-- Threat actor feeds with full MISP metadata, MITRE techniques, CVE references
-- Structured presentation with raw data preservation
-- Perfect for VulnCheck, MISP, and complex threat intelligence feeds
-- **✨ v2 Features**: PEP8 compliant, full type hints, optimized performance
-
 ### `convert_cti_generic_v2.py` (Alternative) ⚡
 Standard converter with basic field extraction for common CTI formats.
 - **✨ v2 Features**: Enhanced error handling, improved code quality
